@@ -1,0 +1,59 @@
+@model IEnumerable<BaiThiASPNET.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Department</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Code
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Number of Employees
+            </th>
+            <th></th>
+            <th></th> <!-- Thêm cột mới -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfEmployees)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td>
+                    <!-- Thêm cột mới -->
+                    <a asp-controller="Employee" asp-action="Index" asp-route-departmentId="@item.Id">View Members</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
